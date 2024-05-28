@@ -5,12 +5,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 from skimage.feature import hog
 from joblib import dump, load
-model = load('D:/gender-classification-dataset/Model/model2.sav')
+model = load('model.sav')
 
 def checking(img):
     image = cv2.imread(img)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    cascade = cv2.CascadeClassifier("D:/gender-classification-dataset/haarcascade_frontalface_default.xml")
+    cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
     faces = cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
     for (x, y, w, h) in faces:
         # Preprocess image
@@ -41,7 +41,7 @@ def checking(img):
 
 def webcam():
     # Load Haar Cascade
-    face_cascade = cv2.CascadeClassifier("D:/gender-classification-dataset/haarcascade_frontalface_default.xml")
+    face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
     Categories = ['female', 'male']
     # Open webcam
     cap = cv2.VideoCapture(0)
